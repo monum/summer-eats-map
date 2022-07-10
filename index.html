@@ -109,6 +109,8 @@
         mapboxgl: mapboxgl
       })
     );
+    
+    map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 
     $(document).ready(function () {
       $.ajax({
