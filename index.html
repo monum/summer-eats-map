@@ -103,7 +103,7 @@
         if (feature.properties.Name.toLowerCase().search(query.toLowerCase()) !== -1) {
           feature['place_name'] = feature.properties.Name;
           feature['center'] = feature.geometry.coordinates;
-          feature['place_type'] = ['Building'];
+          //feature['place_type'] = ['Building'];
           
           matchingFeatures.push(feature);
         }
