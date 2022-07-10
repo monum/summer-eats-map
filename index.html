@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css" type="text/css">
   <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
   <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
-  <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+  <!--<script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>-->
   <style>
     body {
       margin: 0;
@@ -181,10 +181,10 @@
             map.on('mouseleave', 'places', function () {
               map.getCanvas().style.cursor = '';
             });
-
+            /*
             var bbox = turf.bbox(data);
             map.fitBounds(bbox, { padding: 50 });
-
+            */
           });
 
         });
