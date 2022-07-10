@@ -79,10 +79,8 @@
 </head>
 
 <body>
-
   <div id='map'></div>
   <script>
-
     var transformRequest = (url, resourceType) => {
       var isMapboxRequest =
         url.slice(8, 22) === "api.mapbox.com" ||
@@ -106,7 +104,13 @@
     map.addControl(
       new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
+        mapboxgl: mapboxgl,
+        bbox: [-71.190336,42.240688,-70.985076,42.393463],
+        proximity: {
+          longitude: -71.080463,
+          latitude: 42.330631
+        },
+        placeholder: 'Search by name or address'
       })
     );
     
@@ -120,8 +124,6 @@
         success: function (csvData) { makeGeoJSON(csvData); }
       });
 
-
-
       function makeGeoJSON(csvData) {
         csv2geojson.csv2geojson(csvData, {
           latfield: 'Latitude',
@@ -129,8 +131,6 @@
           delimiter: ','
         }, function (err, data) {
           map.on('load', function () {
-
-            //Add the the layer to the map
             map.addLayer({
               'id': 'csvData',
               'type': 'circle',
@@ -140,7 +140,8 @@
               },
               'paint': {
                 'circle-radius': 5,
-                'circle-color': "purple"
+                'circle-color': "#0074D9",
+                'circle-stroke-color': "white"
               }
             });
 
