@@ -81,6 +81,8 @@
 <body>
   <div id='map'></div>
   <script>
+    var locationData;
+    
     var transformRequest = (url, resourceType) => {
       var isMapboxRequest =
         url.slice(8, 22) === "api.mapbox.com" ||
@@ -91,6 +93,24 @@
           : url
       };
     };
+    
+    function forwardGeocoder(query) {
+      var matchingFeatures = [];
+
+      for (var i = 0; i < locationData.length; i++) {
+        var feature = locationData[i];
+
+        if (feature.properties.Property_Name.toLowerCase().search(query.toLowerCase()) !== -1) {
+          feature['place_name'] = feature.properties.Property_Name;
+          feature['center'] = feature.geometry.coordinates;
+          feature['place_type'] = ['Building'];
+          
+          matchingFeatures.push(feature);
+        }
+       }
+
+        return matchingFeatures;
+      };
     
     mapboxgl.accessToken = 'pk.eyJ1IjoibmV3dXJiYW5tZWNocyIsImEiOiJja2JiamtmcHEwMXpiMnJwcmJqMnZtcm0wIn0.d3fLu06Sb9axgVKWKNpdfA';
     var map = new mapboxgl.Map({
@@ -122,7 +142,9 @@
         type: "GET",
         url: 'https://docs.google.com/spreadsheets/d/1lYNxqLXYMWlQlxbXU-uZJN5ZLnXfBBQ-RLf5tIzoJBg/gviz/tq?tqx=out:csv&sheet=Sheet1',
         dataType: "text",
-        success: function (csvData) { makeGeoJSON(csvData); }
+        success: function (csvData) {
+          makeGeoJSON(csvData); 
+        }
       });
 
       function makeGeoJSON(csvData) {
@@ -131,6 +153,7 @@
           lonfield: 'Longitude',
           delimiter: ','
         }, function (err, data) {
+          locationData = csvData;
           map.on('load', function () {
             map.addLayer({
               'id': 'csvData',
