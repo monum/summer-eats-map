@@ -131,6 +131,7 @@
           longitude: -71.080463,
           latitude: 42.330631
         },
+        localGeocoder: forwardGeocoder,
         placeholder: 'Search by address'
       })
     );
@@ -153,7 +154,7 @@
           lonfield: 'Longitude',
           delimiter: ','
         }, function (err, data) {
-          locationData = csvData;
+          locationData = data;
           map.on('load', function () {
             map.addLayer({
               'id': 'csvData',
