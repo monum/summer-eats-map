@@ -98,10 +98,10 @@
       for (var i = 0; i < locationData.length; i++) {
         var feature = locationData[i];
 
-        if (feature.properties.Name.toLowerCase().search(query.toLowerCase()) !== -1) {
-          feature['place_name'] = feature.properties.Name;
+        if (feature.properties.title.toLowerCase().includes(query.toLowerCase())) {
+          feature['place_name'] = `🥗 ${feature.properties.Name}`
           feature['center'] = feature.geometry.coordinates;
-          //feature['place_type'] = ['Building'];
+          feature['place_type'] = ['Summer-Eats-Site'];
           
           matchingFeatures.push(feature);
         }
