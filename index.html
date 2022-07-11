@@ -98,7 +98,6 @@
       for (var i = 0; i < locationData.length; i++) {
         var feature = locationData[i];
 
-        console.log(locationData);
         if (feature.properties.Neighborhood.toLowerCase().includes(query.toLowerCase())) {
           feature['place_name'] = `🥗 ${feature.properties.Neighborhood}`
           feature['center'] = feature.geometry.coordinates;
@@ -155,7 +154,7 @@
           lonfield: 'Longitude',
           delimiter: ','
         }, function (err, data) {
-          locationData = data;
+          locationData = csvData;
           map.on('load', function () {
             map.addLayer({
               'id': 'csvData',
