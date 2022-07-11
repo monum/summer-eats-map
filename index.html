@@ -129,7 +129,7 @@
     $(document).ready(function () {
       $.ajax({
         type: "GET",
-        url: 'https://docs.google.com/spreadsheets/d/1lYNxqLXYMWlQlxbXU-uZJN5ZLnXfBBQ-RLf5tIzoJBg/gviz/tq?tqx=out:csv&sheet=Sheet1',
+        url: 'https://docs.google.com/spreadsheets/d/1lYNxqLXYMWlQlxbXU-uZJN5ZLnXfBBQ-RLf5tIzoJBg/gviz/tq?tqx=out:csv&sheet=Sheet2',
         dataType: "text",
         success: function (csvData) {
           makeGeoJSON(csvData); 
