@@ -97,7 +97,7 @@
       for (var i = 0; i < locationData.features.length; i++) {
         var feature = locationData.features[i];
         if (feature.properties.Neighborhood.toLowerCase().search(query.toLowerCase()) !== -1) {
-          feature['place_name'] = `🥗 ${feature.properties.Neighborhood}`
+          feature['place_name'] = `🥗 feature.properties.Name in ${feature.properties.Neighborhood}`
           feature['center'] = feature.geometry.coordinates;
           feature['place_type'] = ['Summer-Eats-Site'];
           
