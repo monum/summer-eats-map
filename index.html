@@ -99,6 +99,7 @@
         var feature = locationData[i];
 
         if (feature.properties.Neighborhood.toLowerCase().search(query.toLowerCase()) !== -1) {
+          console.log(query,'true');
           feature['place_name'] = `🥗 ${feature.properties.Neighborhood}`
           feature['center'] = feature.geometry.coordinates;
           feature['place_type'] = ['Summer-Eats-Site'];
@@ -106,7 +107,7 @@
           matchingFeatures.push(feature);
         }
        }
-        console.log(matchingFeatures);
+      
         return matchingFeatures;
       };
     
