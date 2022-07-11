@@ -95,6 +95,7 @@
     function forwardGeocoder(query) {
       var matchingFeatures = [];
 
+       console.log(locationData);
       for (var i = 0; i < locationData.length; i++) {
         var feature = locationData[i];
 
@@ -119,20 +120,6 @@
       hash: true,
       transformRequest: transformRequest
     });
-    
-    map.addControl(
-      new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl,
-        bbox: [-71.190336,42.240688,-70.985076,42.393463],
-        proximity: {
-          longitude: -71.080463,
-          latitude: 42.330631
-        },
-        localGeocoder: forwardGeocoder,
-        placeholder: 'Search by address'
-      })
-    );
     
     map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 
@@ -198,10 +185,20 @@
             map.on('mouseleave', 'places', function () {
               map.getCanvas().style.cursor = '';
             });
-            /*
-            var bbox = turf.bbox(data);
-            map.fitBounds(bbox, { padding: 50 });
-            */
+            
+            map.addControl(
+              new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl,
+                bbox: [-71.190336,42.240688,-70.985076,42.393463],
+                proximity: {
+                  longitude: -71.080463,
+                  latitude: 42.330631
+                },
+                localGeocoder: forwardGeocoder,
+                placeholder: 'Search by address'
+              })
+            );
           });
 
         });
