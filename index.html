@@ -106,8 +106,6 @@
           matchingFeatures.push(feature);
         }
        }
-        
-      console.log(matchingFeatures);
 
         return matchingFeatures;
       };
@@ -154,7 +152,7 @@
           lonfield: 'Longitude',
           delimiter: ','
         }, function (err, data) {
-          locationData = csvData;
+          locationData = data;
           map.on('load', function () {
             map.addLayer({
               'id': 'csvData',
