@@ -73,6 +73,10 @@
     .mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
       border-bottom-color: rgb(27, 160, 96);
     }
+    
+    .mapboxgl-ctrl-geocoder {
+      width: 315px!important;
+    }
   </style>
 </head>
 
@@ -97,7 +101,7 @@
       for (var i = 0; i < locationData.features.length; i++) {
         var feature = locationData.features[i];
         if (feature.properties.Neighborhood.toLowerCase().search(query.toLowerCase()) !== -1) {
-          feature['place_name'] = `🥗 feature.properties.Name in ${feature.properties.Neighborhood}`
+          feature['place_name'] = `🥗 ${feature.properties.Name} in ${feature.properties.Neighborhood}`
           feature['center'] = feature.geometry.coordinates;
           feature['place_type'] = ['Summer-Eats-Site'];
           
@@ -193,7 +197,7 @@
                   latitude: 42.330631
                 },
                 localGeocoder: forwardGeocoder,
-                placeholder: 'Search by address'
+                placeholder: 'Search by neighborhood or address'
               })
             );
           });
