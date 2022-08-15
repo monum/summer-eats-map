@@ -123,14 +123,13 @@
       transformRequest: transformRequest
     });
     
-    map.scrollZoom.disable();
-    
-    map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
-    
-
     map.addControl(new mapboxgl.AttributionControl({
       customAttribution: "Mayor's Office of New Urban Mechanics"
     }));
+    
+    map.scrollZoom.disable();
+    
+    map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 
     $(document).ready(function () {
       $.ajax({
